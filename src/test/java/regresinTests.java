@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
-public class regresinTests {
+public class RegresinTests {
 
     @Test
     void singleUserTest() {
@@ -27,12 +27,13 @@ public class regresinTests {
 
     }
 
-    String createUser = "{\n" +
+    
+    @Test
+    void createUser() {
+        String createUser = "{\n" +
             "    \"name\": \"morpheus\",\n" +
             "    \"job\": \"leader\"\n" +
             "}";
-    @Test
-    void createUser() {
         given()
                 .body(createUser)
                 .contentType(JSON)
@@ -45,12 +46,13 @@ public class regresinTests {
 
     }
 
-    String updateRequest = "{\n" +
+   
+    @Test
+    void updateRequest() {
+         String updateRequest = "{\n" +
             "    \"name\": \"morpheus\",\n" +
             "    \"job\": \"zion resident\"\n" +
             "}";
-    @Test
-    void updateRequest() {
         given()
                 .body(updateRequest)
                 .contentType(JSON)
@@ -62,11 +64,12 @@ public class regresinTests {
                 .body("job", is("zion resident"));
     }
 
-    String unsuccesfulRegister = "{\n" +
-            "    \"email\": \"sydney@fife\"\n" +
-            "}";
+   
     @Test
     void unsuccesfulRegister() {
+        String unsuccesfulRegister = "{\n" +
+            "    \"email\": \"sydney@fife\"\n" +
+            "}";
         given()
                 .body(unsuccesfulRegister)
                 .contentType(JSON)
